@@ -1,0 +1,65 @@
+pipeline{
+    agent any 
+      stages{
+        stage('step-1-pull'){
+          steps{
+            git branch: 'demo', url: 'https://github.com/pranit-butale/demo.git'
+          }
+        }
+
+        stage('step-2-build'){
+          steps{
+            echo 'build success'
+          }
+        }
+
+        stage('step-3-test'){
+          steps{
+            echo 'build success'
+          }
+        }
+
+        stage('step-4-deploy'){
+          steps{
+            echo 'deploy success'
+          }
+        }
+
+        
+      }
+}
+
+
+
+
+
+
+pipeline{
+    agent any 
+      stages{
+        stage('step-1-pull'){
+          steps{
+            git branch: 'demo', url: 'https://github.com/pranit-butale/demo.git'
+            echo 'pull success'
+              }
+          }
+        stage('step-2-build'){
+          steps{
+            echo 'build success'
+          }
+        }
+        stage('step-3-test'){
+          steps{
+            echo 'test success'
+          }
+          
+        }
+        stage('step-4-deploy'){
+          steps{
+            echo 'deploy success'
+          }
+        }
+     
+      }
+
+}
