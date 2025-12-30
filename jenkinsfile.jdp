@@ -4,6 +4,7 @@ pipeline{
         stage('step-1-pull'){
           steps{
             git branch: 'demo', url: 'https://github.com/pranit-butale/demo.git'
+<<<<<<< HEAD
           }
         }
 
@@ -40,6 +41,8 @@ pipeline{
         stage('step-1-pull'){
           steps{
             git branch: 'devops', url: 'https://github.com/abhilashmwaghmare/EASY_CRUD.git'
+=======
+>>>>>>> 8cc33b996edcbf4bb5a9fa8960a61c791d368a48
             echo 'pull success'
               }
           }
