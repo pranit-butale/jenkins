@@ -39,18 +39,25 @@ pipeline{
       stages{
         stage('step-1-pull'){
           steps{
-            git branch: 'demo', url: 'https://github.com/pranit-butale/demo.git'
+            git branch: 'devops', url: 'https://github.com/abhilashmwaghmare/EASY_CRUD.git'
             echo 'pull success'
               }
           }
         stage('step-2-build'){
           steps{
             echo 'build success'
+            sh '''cd backend
+                  mvn clean package -DskipTests'''
           }
         }
         stage('step-3-test'){
           steps{
-            echo 'test success'
+           sh '''cd backend 
+                 mvn sonar:sonar \\
+                 -Dsonar.projectKey=studentapp \\
+                 -Dsonar.projectName=\'studentapp\' \\
+                 -Dsonar.host.url=http://3.110.76.136:9000 \\
+                 -Dsonar.token=sqp_1cfd766701a677002f48013c691e97ea3196ec1d'''
           }
           
         }
