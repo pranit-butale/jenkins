@@ -18,29 +18,37 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                sh '''terraform init
-                    terraform plan '''
+                dir('threetier-jenkins') {
+                    sh '''terraform init
+                        terraform plan '''
+                }
             }
         }
 
         //stage('Terraform Plan') {
         //    steps {
-        //        sh 'terraform plan'
+        //        dir('threetier-jenkins') {
+        //            sh 'terraform plan'
+        //        }
         //    }
-       // }
+        //}
 
-      stage('Terraform apply') {
-          steps {
-               input message: "Do you want to deploy EKS?"
-               sh 'terraform apply -auto-approve'
-           }
+        stage('Terraform apply') {
+            steps {
+                input message: "Do you want to deploy EKS?"
+                dir('threetier-jenkins') {
+                    sh 'terraform apply -auto-approve'
+                }
+            }
         }
-       
-      //  stage('Terraform destroy') {
-       //     steps {
+
+        //stage('Terraform destroy') {
+        //    steps {
         //        input message: "Do you want to destroy EKS?"
-        //        sh 'terraform destroy -auto-approve'
-         //   }
+        //        dir('threetier-jenkins') {
+        //            sh 'terraform destroy -auto-approve'
+        //        }
+        //    }
         //}
 
     }
