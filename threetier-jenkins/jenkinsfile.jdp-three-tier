@@ -1,0 +1,53 @@
+pipeline {
+     agent any 
+        stages {
+            stage ('stage-1-pull') {         
+                 steps {
+                     git branch: 'devops', url: 'https://github.com/abhilashmwaghmare/EASY_CRUD.git'
+
+            }  
+        }
+                stage ('stage-2-docker-build-frontend') {         
+                  steps {
+                       sh '''cd frontend
+                             docker build -t pranit413/easy-frontend:latest .'''
+
+            }  
+        }
+
+              stage ('stage-3-docker-build-backend') {         
+                  steps {
+                    sh '''cd backend
+                             docker build -t pranit4134/easy-backend:latest .'''
+            }  
+        }
+
+             stage ('stage-4-docker-push-backend-frontend') {         
+                  steps {
+
+                         sh '''docker push pranit413/easy-backend:latest .
+                               docker push apranit413/easy-frontend:latest . '''
+            }  
+        }
+        
+        stage('Configure Kubeconfig') {
+           steps {
+              sh '''
+                aws eks update-kubeconfig --region us-east-1 --name demo-eks-cluster1
+                kubectl get nodes
+                '''
+    }
+}
+
+
+
+      stage ('stage-5-deployment') {         
+                  steps {
+                       sh 'kubectl apply -f simple-deploy/'
+
+            }  
+        }
+
+    }
+
+} 
