@@ -1,5 +1,5 @@
 variable "aws_region" {
-  default = "ap-south-1"
+  default = "us-east-1"
 }
 
 variable "cluster_name" {
@@ -7,7 +7,7 @@ variable "cluster_name" {
 }
 
 variable "node_instance_type" {
-  default = "t2.medium"
+  default = "t3.small"
 }
 
 variable "desired_nodes" {
