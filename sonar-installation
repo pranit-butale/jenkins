@@ -37,7 +37,7 @@ vim conf/sonar.properties
 >> sonar.jdbc.password=redhat
 >> sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
 
-useradd sonar -m
+adduser sonar -m
 chown sonar:sonar -R /opt/sonar
 su sonar
 cd /opt/sonar/bin/linux-x86-64
